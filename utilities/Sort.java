@@ -11,7 +11,7 @@ public abstract class Sort {
 
     public abstract void sort(Shape[] shapes);
 
-    private int compare(Shape s1, Shape s2){
+    protected int compare(Shape s1, Shape s2){
         if (compType == 'h')
             return s1.compareTo(s2);
         if (compType == 'b')
@@ -20,7 +20,7 @@ public abstract class Sort {
             return ShapeComaprator.compareByVolume(s1, s2);
         throw new IllegalArgumentException("compType not valid (must be h, b, or v");
     }
-    private static void swap(Shape[] shapes, int a, int b){
+    protected static void swap(Shape[] shapes, int a, int b){
         if(a != b) {
             Shape temp = shapes[a];
             shapes[a] = shapes[b];
