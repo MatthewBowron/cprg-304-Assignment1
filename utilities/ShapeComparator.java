@@ -3,7 +3,7 @@ import shapes.Shape;
 
 import java.util.Comparator;
 
-public class ShapeComaprator{
+public class ShapeComparator{
 
     public static int compareByBase (Shape o1, Shape o2) {
         double left = o1.calcbaseArea();
