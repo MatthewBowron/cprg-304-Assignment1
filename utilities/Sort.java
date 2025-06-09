@@ -8,7 +8,6 @@ public abstract class Sort {
     private Comparator<? super Shape> comp;
     protected void setCompare(Comparator<? super Shape> comp){ this.comp = comp; }
 
-
     public abstract void sort(Shape[] shapes, Comparator<? super Shape> comp);
     public void sort(Shape[] shapes){
         sort(shapes, null);
