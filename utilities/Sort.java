@@ -2,23 +2,22 @@ package utilities;
 
 import shapes.Shape;
 
-public abstract class Sort {
-    private char compType;
-    public void setCompType(char compareType){ this.compType = compareType; }
-    public Sort(char compareType) {
-        setCompType(compareType);
-    }
+import java.util.Comparator;
 
-    public abstract void sort(Shape[] shapes);
+public abstract class Sort {
+    private Comparator<? super Shape> comp;
+    protected void setCompare(Comparator<? super Shape> comp){ this.comp = comp; }
+
+
+    public abstract void sort(Shape[] shapes, Comparator<? super Shape> comp);
+    public void sort(Shape[] shapes){
+        sort(shapes, null);
+    }setCompare(comp);
 
     protected int compare(Shape s1, Shape s2){
-        if (compType == 'h')
+        if(comp == null)
             return s1.compareTo(s2);
-        if (compType == 'b')
-            return ShapeComaprator.compareByBase(s1, s2);
-        if (compType == 'v')
-            return ShapeComaprator.compareByVolume(s1, s2);
-        throw new IllegalArgumentException("compType not valid (must be h, b, or v");
+        return comp.compare(s1, s2);
     }
     protected static void swap(Shape[] shapes, int a, int b){
         if(a != b) {

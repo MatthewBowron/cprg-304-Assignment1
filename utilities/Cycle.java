@@ -2,13 +2,12 @@ package utilities;
 
 import shapes.Shape;
 
+import java.util.Comparator;
+
 
 public class Cycle extends Sort{
-    public Cycle(char compareType) {
-        super(compareType);
-    }
-
-    public void sort(Shape[] shapes){
+    public void sort(Shape[] shapes, Comparator<? super Shape> comp){
+        setCompare(comp);
         int n = shapes.length;
         for (int cycleStart = 0; cycleStart <= n - 2; cycleStart++) {
             Shape shape = shapes[cycleStart];

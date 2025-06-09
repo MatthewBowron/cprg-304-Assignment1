@@ -4,6 +4,8 @@ import shapes.Cylinder;
 import shapes.*;
 import utilities.*;
 
+import java.util.Optional;
+
 
 public class AppDriver
 {
@@ -19,16 +21,15 @@ public class AppDriver
 		shapes[3] = new OctagonalPrism(3, 0.5);
 		shapes[4] = new Cylinder(2, 2);
 
-		Sort method = new Cycle('h');
-		method.sort(shapes);
+		Sort method = new Cycle();
+		method.sort(shapes, new VolumeCompare());
 
 		System.out.println("After sort : ");
 		for (int i = 0; i < 5; i++)
 			System.out.print(shapes[i].getHeight() + " ");
 		// TODO Auto-generated method stub
 
-		// refer to demo001 BasicFileIO.java for a simple example on how to
-		// read data from a text file
+
 
 		// refer to demo01 Test.java for an example on how to parse command
 		// line arguments and benchmarking tests
@@ -43,10 +44,12 @@ public class AppDriver
 	}
 
 	public Shape[] readFile(String fileName){
+		// refer to demo001 BasicFileIO.java for a simple example on how to
+		// read data from a text file
 		return null;
 	}
 
-	public void display(Shape[] shapes){ //desplay first, last and every 1000th element between
+	public void display(Shape[] shapes){ //display first, last and every 1000th element between
 
 	}
 

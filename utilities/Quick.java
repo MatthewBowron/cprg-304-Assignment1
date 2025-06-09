@@ -2,12 +2,11 @@ package utilities;
 
 import shapes.Shape;
 
-public class Quick extends Sort {
-    public Quick(char compareType) {
-        super(compareType);
-    }
+import java.util.Comparator;
 
-    public void sort(Shape[] shapes){
+public class Quick extends Sort {
+    public void sort(Shape[] shapes, Comparator<? super Shape> comp){
+        setCompare(comp);
         QuickSort(shapes, 0, shapes.length-1);
     }
 
@@ -17,7 +16,7 @@ public class Quick extends Sort {
             int i = low;
 
             for (int j = low; j < high; j++){
-                if(compare(shapes[j], shapes[high]) > 0){
+                if(compare(shapes[j], shapes[high]) > 0) {
                     swap(shapes, i, j);
                     i++;
                 }
