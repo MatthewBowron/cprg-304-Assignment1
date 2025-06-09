@@ -1,6 +1,7 @@
 package appDomain;
 
-import shapes.Shape;
+import shapes.Cylinder;
+import shapes.*;
 import utilities.*;
 
 
@@ -9,6 +10,21 @@ public class AppDriver
 
 	public static void main( String[] args )
 	{
+
+
+		Shape[] shapes = new Shape[5];
+		shapes[0] = new Cylinder(1, 2);
+		shapes[1] = new Cylinder(5, 7);
+		shapes[2] = new OctagonalPrism(1.5, 1);
+		shapes[3] = new OctagonalPrism(3, 0.5);
+		shapes[4] = new Cylinder(2, 2);
+
+		Sort method = new Cycle('h');
+		method.sort(shapes);
+
+		System.out.println("After sort : ");
+		for (int i = 0; i < 5; i++)
+			System.out.print(shapes[i].getHeight() + " ");
 		// TODO Auto-generated method stub
 
 		// refer to demo001 BasicFileIO.java for a simple example on how to
