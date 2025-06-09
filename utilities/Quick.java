@@ -3,8 +3,8 @@ package utilities;
 import shapes.Shape;
 
 
-public class Quick {
-    public static void sort(Shape[] shapes, String compType){
+public class Quick extends Sort {
+    public void sort(Shape[] shapes, char compType){
 
     }
 }

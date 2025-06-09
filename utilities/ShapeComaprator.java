@@ -3,9 +3,9 @@ import shapes.Shape;
 
 import java.util.Comparator;
 
-public class ShapeComaprator implements Comparator<Shape> {
+public class ShapeComaprator{
 
-    public int compare (Shape o1, Shape o2) {
+    public static int compareByBase (Shape o1, Shape o2) {
         double left = o1.calcbaseArea();
         double right = o2.calcbaseArea();
 
@@ -14,7 +14,7 @@ public class ShapeComaprator implements Comparator<Shape> {
         else return 0;
     }
 
-    public int compareByVolume (Shape o1, Shape o2) {
+    public static int compareByVolume (Shape o1, Shape o2) {
         double left = o1.calcVolume();
         double right = o2.calcVolume();
 
