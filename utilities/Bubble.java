@@ -4,7 +4,11 @@ import shapes.Shape;
 
 
 public class Bubble extends Sort{
-    public void sort(Shape[] shapes, char compType){
+    public Bubble(char compareType) {
+        super(compareType);
+    }
+
+    public void sort(Shape[] shapes){
 
     }
 }

@@ -3,9 +3,15 @@ package utilities;
 import shapes.Shape;
 
 public abstract class Sort {
-    public abstract void sort(Shape[] shapes, char compType);
+    private char compType;
+    public void setCompType(char compareType){ this.compType = compareType; }
+    public Sort(char compareType) {
+        setCompType(compareType);
+    }
 
-    private static int compare(Shape s1, Shape s2, char compType){
+    public abstract void sort(Shape[] shapes);
+
+    private int compare(Shape s1, Shape s2){
         if (compType == 'h')
             return s1.compareTo(s2);
         if (compType == 'b')
