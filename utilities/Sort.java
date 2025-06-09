@@ -12,7 +12,7 @@ public abstract class Sort {
     public abstract void sort(Shape[] shapes, Comparator<? super Shape> comp);
     public void sort(Shape[] shapes){
         sort(shapes, null);
-    }setCompare(comp);
+    }
 
     protected int compare(Shape s1, Shape s2){
         if(comp == null)
