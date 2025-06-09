@@ -2,13 +2,11 @@ package utilities;
 
 import shapes.Shape;
 
+import java.util.Comparator;
+
 public class Insertion extends Sort {
-
-    public Insertion(char compareType) {
-        super(compareType);
-    }
-
-    public void sort(Shape[] shapes) {
+    public void sort(Shape[] shapes, Comparator<? super Shape> comp){
+        setCompare(comp);
         int n = shapes.length;
 
         for (int i = 1; i < n; i++) {
