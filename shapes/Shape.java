@@ -11,8 +11,6 @@ public abstract class Shape implements Comparable<Shape>{
     public void setHeight(double height) { this.height = height; }
 
     public int compareTo(Shape s){
-        if ( this.getHeight() > s.getHeight() ) return 1;
-        else if ( this.getHeight() < s.getHeight() ) return -1;
-        else return 0;
+        return Double.compare(this.getHeight(), s.getHeight());
     }
 }
