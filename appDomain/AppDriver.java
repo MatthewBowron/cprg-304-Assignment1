@@ -46,25 +46,25 @@ public Shape[] readFile(){
 		
 			switch (type) {
 				case "Cylinder":
-				    shapes[i] = new Cylinder(height, size);
+				    shapes[i] = new Cylinder(height, radius);
 				    break;
 				case "Cone":
-				    shapes[i] = new Cone(height, size);
+				    shapes[i] = new Cone(height, radius);
 				    break;
 				case "Pyramid":
-				    shapes[i] = new Pyramid(height, size);
+				    shapes[i] = new Pyramid(height, side);
 				    break;
 				case "SquarePrism":
-				    shapes[i] = new SquarePrism(height, size);
+				    shapes[i] = new SquarePrism(height, side);
 				    break;
 				case "TriangularPrism":
-				    shapes[i] = new TriangularPrism(height, size);
+				    shapes[i] = new TriangularPrism(height, side);
 				    break;
 				case "PentagonalPrism":
-				    shapes[i] = new PentagonalPrism(height, size);
+				    shapes[i] = new PentagonalPrism(height, side);
 				    break;
 				case "OctagonalPrism":
-				    shapes[i] = new OctagonalPrism(height, size);
+				    shapes[i] = new OctagonalPrism(height, side);
 				    break;
 				default:
 				    System.out.println("Unknown shape type: " + type);
