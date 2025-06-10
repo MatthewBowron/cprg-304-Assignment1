@@ -30,9 +30,53 @@ public class AppDriver
 		System.out.printf("%s Sort run time was: %d milliseconds", sort, stop - start);
 	}
 
-	public Shape[] readFile(){
+public Shape[] readFile(){
 		// refer to demo001 BasicFileIO.java for a simple example on how to
 		// read data from a text file
+	try {
+		Scanner scanner = new Scanner(new File(file));
+		int count = Integer.parseInt(scanner.nextLine());
+		Shape[] shapes = new Shape[count];
+		
+		for (int i = 0; i < count; i++) {
+			String[] values = scanner.nextLine().split(" ");
+			String type = values[0];
+			double height = Double.parseDouble(values[1]);
+			double size = Double.parseDouble(values[2]);
+		
+			switch (type) {
+				case "Cylinder":
+				    shapes[i] = new Cylinder(height, size);
+				    break;
+				case "Cone":
+				    shapes[i] = new Cone(height, size);
+				    break;
+				case "Pyramid":
+				    shapes[i] = new Pyramid(height, size);
+				    break;
+				case "SquarePrism":
+				    shapes[i] = new SquarePrism(height, size);
+				    break;
+				case "TriangularPrism":
+				    shapes[i] = new TriangularPrism(height, size);
+				    break;
+				case "PentagonalPrism":
+				    shapes[i] = new PentagonalPrism(height, size);
+				    break;
+				case "OctagonalPrism":
+				    shapes[i] = new OctagonalPrism(height, size);
+				    break;
+				default:
+				    System.out.println("Unknown shape type: " + type);
+				    break;
+			}
+		}
+		
+		scanner.close();
+		return shapes;
+	}
+	catch (Exception e) {
+		System.out.println("Error reading file: " + e.getMessage());
 		return null;
 	}
 
