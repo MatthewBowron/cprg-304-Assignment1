@@ -4,7 +4,9 @@ import shapes.Cylinder;
 import shapes.*;
 import utilities.*;
 
+import java.io.File;
 import java.util.Comparator;
+import java.util.Scanner;
 
 
 public class AppDriver
@@ -30,54 +32,50 @@ public class AppDriver
 		System.out.printf("%s Sort run time was: %d milliseconds", sort, stop - start);
 	}
 
-public Shape[] readFile(){
-		// refer to demo001 BasicFileIO.java for a simple example on how to
-		// read data from a text file
-	try {
-		Scanner scanner = new Scanner(new File(file));
-		int count = Integer.parseInt(scanner.nextLine());
-		Shape[] shapes = new Shape[count];
-		
-		for (int i = 0; i < count; i++) {
-			String[] values = scanner.nextLine().split(" ");
-			String type = values[0];
-			double height = Double.parseDouble(values[1]);
-			double size = Double.parseDouble(values[2]);
-		
-			switch (type) {
-				case "Cylinder":
-				    shapes[i] = new Cylinder(height, radius);
-				    break;
-				case "Cone":
-				    shapes[i] = new Cone(height, radius);
-				    break;
-				case "Pyramid":
-				    shapes[i] = new Pyramid(height, side);
-				    break;
-				case "SquarePrism":
-				    shapes[i] = new SquarePrism(height, side);
-				    break;
-				case "TriangularPrism":
-				    shapes[i] = new TriangularPrism(height, side);
-				    break;
-				case "PentagonalPrism":
-				    shapes[i] = new PentagonalPrism(height, side);
-				    break;
-				case "OctagonalPrism":
-				    shapes[i] = new OctagonalPrism(height, side);
-				    break;
-				default:
-				    System.out.println("Unknown shape type: " + type);
-				    break;
+	public Shape[] readFile() {
+		try {
+			Scanner scanner = new Scanner(new File(file));
+			int count = Integer.parseInt(scanner.nextLine());
+			Shape[] shapes = new Shape[count];
+
+			for (int i = 0; i < count; i++) {
+				String[] values = scanner.nextLine().split(" ");
+				String type = values[0];
+				double height = Double.parseDouble(values[1]);
+				double param2 = Double.parseDouble(values[2]);
+
+				switch (type) {
+					case "Cylinder":
+						shapes[i] = new Cylinder(height, param2);
+						break;
+					case "Cone":
+						shapes[i] = new Cone(height, param2);
+						break;
+					case "Pyramid":
+						shapes[i] = new Pyramid(height, param2);
+						break;
+					case "SquarePrism":
+						shapes[i] = new SquarePrism(height, param2);
+						break;
+					case "TriangularPrism":
+						shapes[i] = new TriangularPrism(height, param2);
+						break;
+					case "PentagonalPrism":
+						shapes[i] = new PentagonalPrism(height, param2);
+						break;
+					case "OctagonalPrism":
+						shapes[i] = new OctagonalPrism(height, param2);
+						break;
+					default:
+						throw new IllegalArgumentException(String.format("Unknown shape type %s on line %d of %s\n%s", type, (i + 1), file, values[i]));
+				}
 			}
+
+			scanner.close();
+			return shapes;
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Error reading file: " + file + "\n" + e.getMessage());
 		}
-		
-		scanner.close();
-		return shapes;
-	}
-	catch (Exception e) {
-		System.out.println("Error reading file: " + e.getMessage());
-		return null;
 	}
 
 	public void display(Shape[] shapes){ //display first, last and every 1000th element between
