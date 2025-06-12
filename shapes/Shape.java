@@ -13,12 +13,4 @@ public abstract class Shape implements Comparable<Shape>{
     public int compareTo(Shape s){
         return Double.compare(this.getHeight(), s.getHeight());
     }
-    public String toString() {
-        return String.format("%s: height=%.3f, base=%.3f, volume=%.3f",
-            this.getClass().getSimpleName(),
-            getHeight(),
-            calcbaseArea(),
-            calcVolume());
-    }    
-    
 }
