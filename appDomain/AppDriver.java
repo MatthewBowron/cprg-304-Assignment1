@@ -80,12 +80,7 @@ public class AppDriver
 
 	public void display(Shape[] shapes){ //display first, last and every 1000th element between
 		// must exactly match example output
-		int length = shapes.length;
-		for (int i = 0; i < length; i++) {
-			if(i == 0 || i == length-1 || i % 1000 == 0){
-				System.out.print("[%d] %s%n", i, shapes[i]);
-			}
-		}
+		
 	}
 
 	private void parseArgs( String[] args )
