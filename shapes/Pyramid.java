@@ -11,11 +11,11 @@ public class Pyramid extends Shape
     public double getSide() { return side; }
     public void setSide(double side) { this.side = side; }
 
-    public double calcVolume() {
-        return 0;
+    public double calcbaseArea() {
+        return Math.pow(side, 2);
     }
 
-    public double calcbaseArea() {
-        return 0;
+    public double calcVolume() {
+        return (1.0 / 3.0) * calcbaseArea() * getHeight();
     }
 }
