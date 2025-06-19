@@ -9,7 +9,4 @@ public class OctagonalPrism extends Prism
     public double calcbaseArea() {
         return 2 * (1 + Math.sqrt(2)) * Math.pow(this.getSide(), 2);
     }
-    public double calcVolume() {
-        return calcbaseArea() * getHeight();
-    }
 }
