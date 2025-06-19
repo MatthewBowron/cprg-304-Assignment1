@@ -7,6 +7,10 @@ public class PentagonalPrism extends Prism
     }
 
     public double calcbaseArea() {
-        return 0;
+        double s = getSide();
+        return (5 * Math.pow(s, 2) * Math.tan(Math.toRadians(54))) / 4;
+    }
+     public double calcVolume() {
+        return calcbaseArea() * getHeight();
     }
 }
