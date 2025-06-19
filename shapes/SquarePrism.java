@@ -7,6 +7,7 @@ public class SquarePrism extends Prism
     }
 
     public double calcbaseArea() {
-        return 0;
+        double s = getSide(); 
+        return s * s;        
     }
 }
