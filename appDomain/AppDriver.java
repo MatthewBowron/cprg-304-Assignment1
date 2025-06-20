@@ -1,12 +1,10 @@
 package appDomain;
 
-import shapes.Cylinder;
-import shapes.*;
-import utilities.*;
-
 import java.io.File;
 import java.util.Comparator;
 import java.util.Scanner;
+import shapes.*;
+import utilities.*;
 
 
 public class AppDriver
@@ -78,9 +76,46 @@ public class AppDriver
 		}
 	}
 
-	public void display(Shape[] shapes){ //display first, last and every 1000th element between
-		// must exactly match example output
-		
+	public void display(Shape[] shapes) {
+		int len = shapes.length;
+
+		if (len == 0) return;
+
+		// First element
+		System.out.printf("First element is:    %s:    %s: %.6f\n",
+				shapes[0].getClass().getName(),
+				sortBy,
+				getComparisonValue(shapes[0]));
+
+		// Every 1000th element (excluding first and last)
+		for (int i = 1000; i < len - 2; i += 1000) {
+			System.out.printf("%d-th element:    %s:    %s: %.6f\n",
+					i + 1,
+					shapes[i].getClass().getName(),
+					sortBy,
+					getComparisonValue(shapes[i]));
+		}
+
+		// Last element
+		if (len > 1) {
+			System.out.printf("Last element is:     %s:    %s: %.6f\n",
+					shapes[len - 1].getClass().getName(),
+					sortBy,
+					getComparisonValue(shapes[len - 1]));
+		}
+	}
+
+	private double getComparisonValue(Shape shape) {
+		switch (sortBy) {
+			case "Height":
+				return shape.getHeight();
+			case "Volume":
+				return shape.calcVolume();
+			case "Area":
+				return shape.calcbaseArea();
+			default:
+				throw new IllegalStateException("Unexpected value for sortBy: " + sortBy);
+		}
 	}
 
 	private void parseArgs( String[] args )
