@@ -12,10 +12,10 @@ public class Cone extends Shape
     public void setRadius(double radius) { this.radius = radius; }
 
     public double calcVolume() {
-        return 0;
+        return (1.0 / 3.0) * calcbaseArea() * getHeight();
     }
 
     public double calcbaseArea() {
-        return 0;
+        return Math.PI * radius * radius;
     }
 }
