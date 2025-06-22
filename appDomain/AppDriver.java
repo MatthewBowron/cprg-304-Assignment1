@@ -27,7 +27,7 @@ public class AppDriver
 		stop = System.nanoTime();
 
 		driver.display(shapes);
-		System.out.printf("%s Sort run time was: %d milliseconds", sort, stop - start);
+		System.out.printf("%s Sort run time was: %d milliseconds", sort, (long) (0.000001*(stop - start)));
 	}
 
 	public Shape[] readFile() {
@@ -78,31 +78,16 @@ public class AppDriver
 
 	public void display(Shape[] shapes) {
 		int len = shapes.length;
-
 		if (len == 0) return;
 
-		// First element
-		System.out.printf("First element is:    %s:    %s: %.6f\n",
-				shapes[0].getClass().getName(),
-				sortBy,
-				getComparisonValue(shapes[0]));
+		System.out.print("First element is:        " + formatShape(shapes[0]));
+		for (int i = 1000; i < len - 2; i += 1000)
+			System.out.printf("%-24s %s", i + "-th element:" , formatShape(shapes[i]));
+		System.out.printf("Last element is:         " + formatShape(shapes[len-1]));
+	}
 
-		// Every 1000th element (excluding first and last)
-		for (int i = 1000; i < len - 2; i += 1000) {
-			System.out.printf("%d-th element:    %s:    %s: %.6f\n",
-					i + 1,
-					shapes[i].getClass().getName(),
-					sortBy,
-					getComparisonValue(shapes[i]));
-		}
-
-		// Last element
-		if (len > 1) {
-			System.out.printf("Last element is:     %s:    %s: %.6f\n",
-					shapes[len - 1].getClass().getName(),
-					sortBy,
-					getComparisonValue(shapes[len - 1]));
-		}
+	private String formatShape(Shape shape){
+		return String.format("%25s       %s:  %f\n", shape.getClass().getName(), sortBy,  getComparisonValue(shape));
 	}
 
 	private double getComparisonValue(Shape shape) {
@@ -120,11 +105,13 @@ public class AppDriver
 
 	private void parseArgs( String[] args )
 	{
+		boolean[] paramatersIncluded = {false, false, false};
 		for (String arg : args) {
 			if (arg.charAt(0) == '-') {
 				char c = Character.toLowerCase(arg.charAt(1));
 				if (c == 'f') {
-					file = arg.substring(2).replaceAll("\"", "");
+					file = "res/" + arg.substring(2).replaceAll("\"", "");
+					paramatersIncluded[0] = true;
 				} else if (c == 't') {
 					switch (arg.charAt(2)) {
 						case 'V':
@@ -145,6 +132,7 @@ public class AppDriver
 						default:
 							throw new IllegalArgumentException("compare type -t should bave value v(volume), h(height), or b(base area) ");
 					}
+					paramatersIncluded[1] = true;
 				} else if (c == 's') {
 					switch (arg.charAt(2)) {
 						case 'B':
@@ -180,8 +168,11 @@ public class AppDriver
 						default:
 							throw new IllegalArgumentException("sort type -s should bave value b(bubble), s(selection), i(insertion), m(merge), q(quick), or c(cycle) ");
 					}
+					paramatersIncluded[2] = true;
 				}
 			}
 		}
+		if (!(paramatersIncluded[0] && paramatersIncluded[1] && paramatersIncluded[2]))
+			throw new IllegalArgumentException("Missing parameter(s):  must include -f (filename) -t (compare type) -s (sort type)");
 	}
 }

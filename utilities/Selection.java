@@ -14,7 +14,7 @@ public class Selection extends Sort {
             int minIndex = i;
 
             for (int j = i + 1; j < n; j++) {
-                if (compare(shapes[j], shapes[minIndex]) < 0) {
+                if (compare(shapes[j], shapes[minIndex]) > 0) {
                     minIndex = j;
                 }
             }
